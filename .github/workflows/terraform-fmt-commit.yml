@@ -3,7 +3,7 @@ name: 'Terraform'
 on:
   push:
     branches:
-    - master
+    - main
   pull_request:
 
 jobs:
@@ -57,4 +57,4 @@ jobs:
         # Whether to use the --signoff option on git commit
         signoff: # optional
         # Arguments for the git tag command (the tag name always needs to be the first word not preceded by a hyphen)
-        tag: # optional  
+        tag: # optional
