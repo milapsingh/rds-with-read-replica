@@ -27,8 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color
+        run: terraform fmt
