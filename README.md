@@ -7,7 +7,7 @@ With the help of this you can create RDS aurora postgres with terraform
 Terraform RDS aurora cluster with one read replica 
 
 Create RDS cluster 
-
+```
 resource "aws_rds_cluster" "cluster" {
   cluster_identifier              = var.name
   snapshot_identifier             = var.db_snapshot_identifier
@@ -23,8 +23,10 @@ resource "aws_rds_cluster" "cluster" {
     ignore_changes = [snapshot_identifier]
   }
 }
+```
 
 Create RDS cluster instance : 
+```
 resource "aws_rds_cluster_instance" "production" {
   cluster_identifier      = aws_rds_cluster.cluster.id
   identifier              = var.name
@@ -41,8 +43,9 @@ resource "aws_rds_cluster_instance" "production" {
     Habitat     = var.habitat
   }
 }
-
+```
 Create RDS cluster reader instance : 
+```
 resource "aws_rds_cluster_instance" "production" {
   cluster_identifier      = aws_rds_cluster.cluster.id
   identifier              = var.name
@@ -59,8 +62,6 @@ resource "aws_rds_cluster_instance" "production" {
     Habitat     = var.habitat
   }
 }
-
-
 resource "aws_route53_record" "db" {
   zone_id = var.dns_zone_id
   name    = var.dns_name
@@ -75,7 +76,6 @@ resource "aws_route53_record" "db_reader" {
   ttl     = "300"
   records = [aws_rds_cluster.cluster.reader_endpoint]
 }
-
 output "rds_cluster_endpoint" {
   description = "The cluster endpoint"
   value       = try(aws_rds_cluster.cluster.endpoint, "")
@@ -84,3 +84,4 @@ output "rds_cluster_reader_endpoint" {
   description = "The cluster endpoint"
   value       = try(aws_rds_cluster.cluster.reader_endpoint, "")
 }
+```
