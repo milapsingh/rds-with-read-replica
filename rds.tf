@@ -1,13 +1,13 @@
 data "aws_vpc" "selected" {
   filter {
     name   = "tag:Name"
-    values = [var.vpc_name]
+                               values = [var.vpc_name]
   }
 }
 module "sg" {
   source = "./sg"
   vpc_id = data.aws_vpc.selected.id
-  name   = var.sg_name
+           name   = var.sg_name
   ingress = [{
     description = "5432 with VPC"
     from_port   = 5432
@@ -24,7 +24,7 @@ module "sg" {
   }]
   tags = {
     Name        = var.sg_name
-    Provisioner = "Terraform"
+    Provisioner                    = "Terraform"
     Habitat     = var.habitat
   }
 }
