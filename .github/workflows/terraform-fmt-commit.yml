@@ -1,9 +1,9 @@
 name: 'Terraform'
-  on:
-    push:
-      branches:
-      - main
-    pull_request:
+on:
+  push:
+    branches:
+    - main
+  pull_request:
 jobs:
     terraform:
       name: 'Terraform'
